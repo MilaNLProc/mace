@@ -1,0 +1,375 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1">
+        <h1>
+          <p><strong>M</strong>ulti</p>
+          <p><strong>A</strong>nnotator</p>
+          <p><strong>C</strong>ompetence</p> 
+          <p><strong>E</strong>stimation</p>
+        </h1>
+        <h2>makes it easy to decide<br>which annotators to trust.</h2>
+        <a href="#mace" class="btn-get-started scrollto">Get Started</a>
+        <a href="#faq" class="btn-get-started scrollto">FAQ</a>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img">
+        <img src="{{ url_for('static', filename='img/about-img.svg') }}" class="img-fluid animated" alt="">
+      </div>
+    </div>
+  </div>
+</section><!-- End Hero -->
+
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container">
+
+      <div class="row justify-content-between">
+        <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
+          <img src="{{ url_for('static', filename='img/hero-img.svg') }}" class="img-fluid" alt="" data-aos="zoom-in">
+        </div>
+        <div class="col-lg-6 pt-5 pt-lg-0">
+          <h3>How it works</h3>
+          <p>
+            Simply upload an Excel file, and let us do the rest.
+          </p>
+          <p>
+            Let's explain <strong>MACE</strong> with an example. When evaluating 
+            redundant annotations (like those from Amazon's Mechanical Turk), 
+            we usually want to aggregate annotations to 
+          </p>
+          <div>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <span>recover the most likely answer</span></li>
+              <li><i class="bx bx-chevron-right"></i> <span>find out which annotators are trustworthy</span></li>
+              <li><i class="bx bx-chevron-right"></i> <span>evaluate items and task difficulty</span></li>
+            </ul>
+          </div>
+          <p>
+            <strong>MACE</strong> solves all of these problems, by learning competence estimates 
+            for each annotators and computing the most likely answer based on those competences.
+            Furthermore, if you have a ground truth (here called "control"), it can be used as a
+            feature to help the algorithm.
+          </p>
+          <p>
+            To use <strong>MACE</strong> you need
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <i class="bx bx-receipt"></i>
+              <h4>Annotations</h4>
+              <p>An Excel file where each row corresponds to an 
+                instance that has to be annotated and each column
+                correspond to one annotator. The annotator columns can
+                be named freely (e.g., using the annorators names or
+                simply using an annotator id). 
+              </p>
+            </div>
+            <div class="col-md-6">
+              <i class="bx bx-cube-alt"></i>
+              <h4>Controls (optional)</h4>
+              <p>An optional column named CONTROLS, 
+                in the same Excel file, which corresponds to 
+                the ground truth; this column will help the algorithm
+                in producing the competence estimates and, ultimately,
+                produce the most probable annotattion for each instance.  
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p>
+                <strong id="note">NOTE:</strong> The only restriction is 
+                that apart from the annotators columns and an optional
+                CONTROLS column, the file should not include any other
+                column, otherwise it will be considered an annotation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Section -->
+
+
+  <!-- ======= Instructions Section ======= -->
+  <section id="services" class="services section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Steps</h2>
+        <p>Let's get practical</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-lg-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-spreadsheet"></i></div>
+            <h4 class="title"><a href="">1. Prepare your data: Add annotations</a></h4>
+            <p class="description">
+              Create an Excel file with two columns where each 
+              row corresponds to an instance that has to be annotated 
+              and each column correspond to one annotator.
+              Each annotator should have its own column, even if it did 
+              not annotate some of the texts (in such cases just leave the cell empty).
+              You can name the columns as you prefer, for example using the 
+              <span id="ttip" data-toggle="tooltip" title="<img id='tooltipimg' src='{{ url_for('static', filename='img/example_names.PNG') }}'/>">
+                annotators' names
+              </span>
+              or simply using an
+              <span id="ttip" data-toggle="tooltip" title="<img id='tooltipimg' src='{{ url_for('static', filename='img/example_pic.PNG') }}'/>">
+                annotator id
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bxs-eyedropper"></i></div>
+            <h4 class="title"><a href="">2. Add CONTROLS (optional)</a></h4>
+            <p class="description">
+              If for some instances you know the correct annotation,
+              you can provide it in a separate column named 
+              <span id="ttip" data-toggle="tooltip" title="<img id='tooltipimg' src='{{ url_for('static', filename='img/example_pic_controls.PNG') }}'/>">
+                CONTROLS
+              </span> (uppercase); this column will help the algorithm
+              producing the competence estimates and, ultimately,
+              produce the most probable annotattion for each instance.  
+              </p>
+          </div>
+        </div>
+      </div>  
+      <div class="row">
+        <div class="col-md-6 col-lg-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-cog"></i></div>
+            <h4 class="title"><a href="">3. Advanced Settings (optional)</a></h4>
+            <p class="description">
+              If for each possible annotation you have a prior belief, 
+              you can provide it in a separate Excel file through the 
+              <i>Advanced Settings</i> menu. This Excel file must have
+              only two columns: one with the possible unique annotations, 
+              named arbitrarily (e.g., Annotations), and one with the prior 
+              probabilities named 
+              <span id="ttip" data-toggle="tooltip" title="<img id='tooltipimgpriors' src='{{ url_for('static', filename='img/priors.PNG') }}'/>">
+              PRIORS
+              </span> (uppercase).
+              This prior information will
+              inform the algorithm producing the most probable annotation 
+              for each instance. If the number of labels for which you specify
+              a prior is smaller than the number of unique labels in the annotation
+              the prior for the missing lable will be set to zero and you will 
+              be notified. In addition, you can further customize the algorithm
+              twicking the available parameters in the <i>Advanced Settings</i> menu.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-paper-plane"></i></div>
+            <h4 class="title"><a href="">4. Receive the output</a></h4>
+            <p class="description">
+              Once the file is ready, upload the file. Depending on 
+              the number of requests, it can take up to 30 minutes (but usually) 
+              3-4 are enough). No data is stored on our server.
+              Once we receive your file, we will process it and send you 
+              the output via email. The output file is an Excel file
+              composed by 3 worksheets:
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
+ 
+
+  {% include "maceform.html" %}
+
+
+
+
+
+  <!-- ======= F.A.Q Section ======= -->
+  <section id="faq" class="faq section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>F.A.Q</h2>
+        <p>Frequently Asked Questions</p>
+      </div>
+
+      <ul class="faq-list">
+
+        <li>
+          <a data-toggle="collapse" class="" href="#faq1">What is <strong>MACE</strong>?<i
+              class="icofont-simple-up"></i></a>
+          <div id="faq1" class="collapse show" data-parent=".faq-list">
+            <p>
+              In settings where you have multiple annotations of a text, 
+              <strong>MACE</strong> is way to recover the most likely answer, 
+              find out which annotators are trustworthy, 
+              evaluate items and task difficulty.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-toggle="collapse" href="#faq2" class="collapsed">What happens to my data?<i class="icofont-simple-up"></i></a>
+          <div id="faq2" class="collapse" data-parent=".faq-list">
+            <p>
+              Nothing. We never store the data you upload on disk: it is only kept 
+              in memory for the duration of the modeling, and then deleted. 
+              We do not retain any copies or traces of your data.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-toggle="collapse" href="#faq3" class="collapsed">What input formats do you support?<i class="icofont-simple-up"></i></a>
+          <div id="faq3" class="collapse" data-parent=".faq-list">
+            <p>
+              All uploaded files must have the .xlsx format.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-toggle="collapse" href="#faq4" class="collapsed">How does it work?<i class="icofont-simple-up"></i></a>
+          <div id="faq4" class="collapse" data-parent=".faq-list">
+            <p>
+              It uses a variant of Stability Selection (Meinshausen and Bühlmann, 2010) 
+              to fit hundreds of logistic regression models on random subsets of the data, 
+              using different L1 penalties to drive as many of the term coefficients to 0. 
+              Any terms that receive a non-zero coefficient in at least 30% of all model 
+              runs can be seen as stable indicators.
+            </p>
+          </div>
+        </li>
+
+        <!-- <li>
+          <a data-toggle="collapse" href="#faq5" class="collapsed">How much data do I need?<i class="icofont-simple-up"></i></a>
+          <div id="faq5" class="collapse" data-parent=".faq-list">
+            <p>
+              We recommend at least 2000 instances, the more, the better. With fewer instances, 
+              the results are less replicable and reliable.
+            </p>
+          </div>
+        </li> -->
+
+        <li>
+          <a data-toggle="collapse" href="#faq6" class="collapsed">Is there a paper I can cite?<i class="icofont-simple-up"></i></a>
+          <div id="faq6" class="collapse" data-parent=".faq-list">
+            <p>
+              To cite <strong>MACE</strong> in publications, please refer to: 
+            </p>
+            <pre>
+            <span class="pl-k">@inproceedings</span>{<span class="pl-en">hovy2013learning</span>,
+              <span class="pl-s">title</span>=<span class="pl-s"><span class="pl-pds">{</span>Learning whom to trust with MACE<span class="pl-pds">}</span></span>,
+              <span class="pl-s">author</span>=<span class="pl-s"><span class="pl-pds">{</span>Hovy, Dirk and Berg-Kirkpatrick, Taylor and Vaswani, Ashish and Hovy, Eduard<span class="pl-pds">}</span></span>,
+              <span class="pl-s">booktitle</span>=<span class="pl-s"><span class="pl-pds">{</span>Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies<span class="pl-pds">}</span></span>,
+              <span class="pl-s">pages</span>=<span class="pl-s"><span class="pl-pds">{</span>1120--1130<span class="pl-pds">}</span></span>,
+              <span class="pl-s">year</span>=<span class="pl-s"><span class="pl-pds">{</span>2013<span class="pl-pds">}</span></span>
+            }
+            </pre>
+            <p>
+              There is an additional paper that compares <strong>MACE</strong> with 
+              some other models:
+            </p>
+            <pre>
+            <span class="pl-k">@article</span>{<span class="pl-en">paun2018comparing</span>,
+              <span class="pl-s">title</span>=<span class="pl-s"><span class="pl-pds">{</span>Comparing Bayesian Models of Annotation<span class="pl-pds">}</span></span>,
+              <span class="pl-s">author</span>=<span class="pl-s"><span class="pl-pds">{</span>Paun, Silviu and Carpenter, Bob and Chamberlain, Jon and Hovy, Dirk and Kruschwitz, Udo and Poesio, Massimo<span class="pl-pds">}</span></span>,
+              <span class="pl-s">journal</span>=<span class="pl-s"><span class="pl-pds">{</span>Transactions of the Association for Computational Linguistics<span class="pl-pds">}</span></span>,
+              <span class="pl-s">volume</span>=<span class="pl-s"><span class="pl-pds">{</span>6<span class="pl-pds">}</span></span>,
+              <span class="pl-s">pages</span>=<span class="pl-s"><span class="pl-pds">{</span>571--585<span class="pl-pds">}</span></span>,
+              <span class="pl-s">year</span>=<span class="pl-s"><span class="pl-pds">{</span>2018<span class="pl-pds">}</span></span>,
+              <span class="pl-s">publisher</span>=<span class="pl-s"><span class="pl-pds">{</span>MIT Press<span class="pl-pds">}</span></span>
+            }
+            </pre>  
+            <p>
+              The official github repo with a java implementation is available at this <a href="https://github.com/dirkhovy/MACE">link</a>. 
+              A python implementation is available at this <a href="">link</a>.
+            </p>
+          </div>
+        </li>
+
+        <!-- <li>
+          <a data-toggle="collapse" href="#faq7" class="collapsed">What languages are supported?<i class="icofont-simple-up"></i></a>
+          <div id="faq7" class="collapse" data-parent=".faq-list">
+            <p>
+              Currently we support: English, German, Dutch, 
+              Spanish, French, Portuguese, Italian, Greek.
+            </p>
+          </div>
+        </li> -->
+
+      </ul>
+
+    </div>
+  </section><!-- End F.A.Q Section -->
+
+
+  <!-- ======= Contact Us Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>Contact us the get started</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-12 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          
+            <div class="info">
+              <div class="row">
+                <div class="col-md-5 address">
+                  <i class="icofont-google-map"></i>
+                  <h4>Location:</h4>
+                  <p>
+                    Via Röntgen n. 1, Milan 20136 (ITALY)<br>
+                  3rd Floor, Room C3-09
+                </p>
+                </div>
+    
+                <div class="col-md-4 email">
+                  <i class="icofont-envelope"></i>
+                  <h4>Email:</h4>
+                  <p>mace@unibocconi.it</p>
+                </div>
+    
+                <div class="col-md-3 phone">
+                  <i class="icofont-phone"></i>
+                  <h4>Call:</h4>
+                  <p> +39 02-5836-2604</p>
+                </div>
+              </div>
+             
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.949796165441!2d9.185730115812493!3d45.450667779100726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c405ae6543c9%3A0xf2bb2313b36af88c!2sVia%20Guglielmo%20R%C3%B6ntgen%2C%201%2C%2020136%20Milano%20MI!5e0!3m2!1sit!2sit!4v1569325279433!5m2!1sit!2sit"
+              frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen>
+            </iframe>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Us Section -->
+
+</main><!-- End #main -->
+
+{% endblock %}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MACE</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
+  <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Spoon Fonts -->
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='lib/spoon/Spoon-Regular.ttf') }}">  -->
+
+  <!-- Google Fonts -->
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Molle:400i|Rock+Salt&display=swap" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Yellowtail&display=swap" rel="stylesheet">
+
+  <!-- New Google Fonts -->
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/icofont/icofont.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/venobox/venobox.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+
+
+  <!-- Libraries CSS Files -->
+  <!-- <link href="{{ url_for('static', filename='lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"> -->
+  <!-- <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet"> -->
+  <!-- <link href="{{ url_for('static', filename='lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet"> -->
+  <!-- <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet"> -->
+  <!-- <link href="{{ url_for('static', filename='lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet"> -->
+
+    <!-- Main Stylesheet File -->
+  <link href="{{ url_for('static', filename='css/style_pietro.css') }}" rel="stylesheet">
+
+ <!-- =======================================================
+  * Template Name: Ninestars - v2.0.0
+  * Template URL: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+ <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container-fluid d-flex">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="index.html"><img src="{{ url_for('static', filename='img/favicon.PNG') }}"/><span id="logo">MACE</span></a></h1>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="#header">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Instructions</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  {% block content %}{% endblock %}
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-8 col-md-6 footer-contact"> 
+            <!-- data-aos="fade-up" data-aos-delay="100"> -->
+            <h3>Data and Marketing Insights (DMI)</h3>
+            <p>
+              Research Unit at Bocconi Institute for Data Science and Analytics (BIDSA) <br>
+              Via Röntgen n. 1, Milan 20136 (ITALY)<br>
+              3rd Floor, Room C3-09 <br><br>
+              <strong>Phone:</strong> +39 02-5836-2604<br>
+              <strong>Email:</strong> <a href="mailto:mace@unibocconi.it">mace@unibocconi.it</a><br>
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-links">
+          <!-- data-aos="fade-up" data-aos-delay="200"> -->
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="//www.dmi.unibocconi.eu/wps/wcm/connect/Cdr/DMI/Home">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="//www.dmi.unibocconi.eu/wps/wcm/connect/Cdr/DMI/Home/About+us">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="//www.bidsa.unibocconi.eu/wps/wcm/connect/Site/Bidsa/Home/Research+Units">Research Units</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="//www.dmi.unibocconi.eu/wps/wcm/connect/Cdr/DMI/Home/Contact+us">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4" id="copyright_footer">
+      <div class="copyright">
+        <strong>Mace</strong> &copy; Università Bocconi - Via Sarfatti, 25 Milano - PI 03628350153
+      </div>
+      <div class="credits">
+        Designed by <a href="//lescipi.github.io">Pietro Lesci</a> based on <a href="//bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/">ninestars</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->                  
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>                 
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/jquery.easing/jquery.easing.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/venobox/venobox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/owl.carousel/owl.carousel.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script>
+    // $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip({
+      animated: 'fade',
+      placement: 'bottom',
+      html: true
+    });
+  </script>
+  <!-- <script>
+    $(function () {
+        $('.material-tooltip-main').tooltip({
+          template: '<div class="tooltip md-tooltip"><div class="tooltip-arrow md-arrow"></div><div class="tooltip-inner md-inner"></div></div>',
+          animated: 'fade',
+          placement: 'bottom',
+          html: true
+        });
+      })
+    </script> -->
+
+</body>
+
+</html>
