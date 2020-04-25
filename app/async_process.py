@@ -33,14 +33,24 @@ class AsyncProcess(object):
         try:
             with self.app_obj.app_context():
 
-                algo = Mace()
-                algo.fit()
+                # algo = Mace(
+                #     inputfile=self.inputs.inputfile,
+                #     priors=self.inputs.priors,
+                #     controls=self.inputs.controls,
+                #     alpha=self.inputs.alpha,
+                #     beta=self.inputs.beta,
+                #     em=self.inputs.em,
+                #     iterations=self.inputs.iterations,
+                #     restarts=self.inputs.restarts,
+                #     threshold=self.inputs.threshold,
+                #     smoothing=self.inputs.smoothing,
+                # )
+                # algo.fit()
+                algo = 
                 self.logger.info("Mace finished")
 
                 report = MaceReporter(algo)
                 attachment = self.prepare_attachment(report)
-                self.logger.info("Attachment prepared")
-
                 email = self.prepare_email(attachment)
                 self.logger.info("Email prepared")
 
@@ -51,11 +61,10 @@ class AsyncProcess(object):
                 os.remove(path)
                 self.logger.info("Attachement removed from disk")
 
-
         except Exception as e:
             with self.app_obj.app_context():
 
-                msg = mail.send_message(
+                mail.send_message(
                     subject='Mace: Sorry, something went wrong',
                     sender=app.config['ADMINS'][0],
                     recipients=[self.inputs['email']],
@@ -72,7 +81,7 @@ class AsyncProcess(object):
                     )
                 )
 
-                msg_to_admin = mail.send_message(
+                mail.send_message(
                     subject='Wordify: Exception',
                     sender=app.config['ADMINS'][0],
                     recipients=[app.config['ADMINS']

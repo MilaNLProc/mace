@@ -1,0 +1,11 @@
+Dear user,
+
+Please find attached your file. It contains two sheets:
+one with the positive indicators for each label and one
+with the negative indicators (note that if you have only
+two labels, the positive indicators of one label are the
+negative ones of the other, and vice versa). If you do not
+see any indicators, you might have provided too few texts
+per label.
+
+Your MilaNLP Team

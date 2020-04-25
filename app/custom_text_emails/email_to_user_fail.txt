@@ -1,0 +1,7 @@
+ Dear user,
+
+Sorry, something went wrong while wordifying your file.
+The administrators have been notified and the problem
+will be solved as soon as possible.
+
+Your MilaNLP Team

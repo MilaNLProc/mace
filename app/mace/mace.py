@@ -84,7 +84,9 @@ class Mace(object):
 
         # for each row, get the column indices with annotations
         self.active_annotations = [
-            [i for i in range(len(row)) if row[i] > -1] for row in self.labels]
+            [i for i in range(len(row)) if row[i] > -1]
+            for row in self.labels
+        ]
 
         # initialize all parameters
         self.reset_params()
@@ -96,19 +98,22 @@ class Mace(object):
         """
         # initialize fractional counts
         self.gold_label_marginals = np.zeros(
-            (self.num_instances, self.num_labels))
+            shape=(self.num_instances, self.num_labels)
+        )
         self.label_preference_expected_counts = np.zeros(
-            (self.num_annotators, self.num_labels))
+            shape=(self.num_annotators, self.num_labels)
+        )
         self.competence_expected_counts = np.zeros((self.num_annotators, 2))
 
         # initialize parameters
-        self.competence = np.random.random(
-            (self.num_annotators, 2)) + self.smoothing
+        self.competence = np.random.random((self.num_annotators, 2)) \
+            + self.smoothing
         self.competence = self.competence / \
             self.competence.sum(axis=1).reshape(-1, 1)
 
         self.label_preference = np.random.random(
-            (self.num_annotators, self.num_labels)) + self.smoothing
+            shape=(self.num_annotators, self.num_labels)
+        ) + self.smoothing
         self.label_preference = self.label_preference / \
             self.label_preference.sum(axis=1).reshape(-1, 1)
 
@@ -126,10 +131,12 @@ class Mace(object):
         """
         # reset counts
         self.gold_label_marginals = np.zeros(
-            (self.num_instances, self.num_labels))
+            shape=(self.num_instances, self.num_labels)
+        )
 
         self.label_preference_expected_counts = np.zeros(
-            (self.num_annotators, self.num_labels))
+            shape=(self.num_annotators, self.num_labels)
+        )
 
         self.competence_expected_counts = np.zeros((self.num_annotators, 2))
 
@@ -142,32 +149,32 @@ class Mace(object):
             # look only at non-empty lines
             if self.labels[d].sum() > -self.num_annotators:
 
-                # # 1. collect instance marginals
-                # # iterate over all labels
-                # for l in range(self.num_labels):
+                # 1. collect instance marginals
+                # iterate over all labels
+                for l in range(self.num_labels):
 
-                #     # TODO: CHECK THIS
-                #     if self.priors:
-                #         gold_label_marginal = self.priors[l]
-                #     else:
-                #         # uniform prior
-                #         gold_label_marginal = 1.0 / self.num_labels
+                    # TODO: CHECK THIS
+                    if self.priors:
+                        gold_label_marginal = self.priors[l]
+                    else:
+                        # uniform prior
+                        gold_label_marginal = 1.0 / self.num_labels
 
-                #     # get only annotators who labeled
-                #     for a in self.active_annotations[d]:
-                #         annotation = self.labels[d][a]
-                #         spam_value = self.competence[a][1] \
-                #             if l == annotation else 0.0
-                #         gold_label_marginal *= self.competence[a][0] * \
-                #             self.label_preference[a][annotation] + \
-                #             spam_value
+                    # get only annotators who labeled
+                    for a in self.active_annotations[d]:
+                        annotation = self.labels[d][a]
+                        spam_value = self.competence[a][1] \
+                            if l == annotation else 0.0
+                        gold_label_marginal *= self.competence[a][0] * \
+                            self.label_preference[a][annotation] + \
+                            spam_value
 
-                #     if (
-                #         self.controls.size == 0 
-                #         or self.controls.size > 0 and self.controls[d] == l
-                #     ):
-                #         instance_marginal += gold_label_marginal
-                #         self.gold_label_marginals[d][l] = gold_label_marginal
+                    if (
+                        not self.controls
+                        or self.controls and self.controls[d] == l
+                    ):
+                        instance_marginal += gold_label_marginal
+                        self.gold_label_marginals[d][l] = gold_label_marginal
 
                 # 2. collect fractional counts, use the instance marginal in 1.
                 self.log_marginal_likelihood += np.log(instance_marginal)
@@ -177,7 +184,7 @@ class Mace(object):
 
                     annotation = self.labels[d][a]
 
-                    if self.controls.size > 0:
+                    if self.controls:
                         # if the annotator used the gold label
                         if annotation == self.controls[d]:
                             spam_value = self.competence[a][1] \
@@ -229,38 +236,7 @@ class Mace(object):
                                                                      + self.competence[a][1])
                                                                   ) / instance_marginal
 
-    def _collect_instance_marginals(self):
-        """
-        Step 1. Collect instance marginals
-        iterating over all labels
-        """
-        for l in range(self.num_labels):
-
-            # TODO: CHECK THIS
-            if self.priors:
-                gold_label_marginal = self.priors[l]
-            else:
-                # uniform prior
-                gold_label_marginal = 1.0 / self.num_labels
-
-            # get only annotators who labeled
-            for a in self.active_annotations[d]:
-                annotation = self.labels[d][a]
-                spam_value = self.competence[a][1] \
-                    if l == annotation else 0.0
-                gold_label_marginal *= self.competence[a][0] * \
-                    self.label_preference[a][annotation] + \
-                    spam_value
-
-            if (
-                self.controls.size == 0 
-                or self.controls.size > 0 and self.controls[d] == l
-            ):
-                instance_marginal += gold_label_marginal
-                self.gold_label_marginals[d][l] = gold_label_marginal
-
-
-
+   
 
     def M_step(self):
         """

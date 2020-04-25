@@ -18,6 +18,8 @@ class MaceInputs(object):
     ----------
     inputfile : pandas.core.frame.DataFrame
         Name of the input file
+    filename : str
+        Name of the file
     priors : Dict
         File name for prior likelihood of each label
     controls : List
@@ -42,6 +44,7 @@ class MaceInputs(object):
         self.inputfile = pd.read_excel(
             form.inputfile.data, dtype=str
         ).fillna(FILLER)
+        self.filename = form.inputfile.filename
         self.priors = self.get_priors(form)
         self.controls = self.get_controls(form)
         self.alpha = self._naive_check(form.alpha, ALPHA)
